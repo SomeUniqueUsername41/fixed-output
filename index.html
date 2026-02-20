@@ -1,45 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fixed Equation Output</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      height: 100vh;
-      margin: 0;
+      font-family: Arial, sans-serif;
     }
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    #output-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 10px;
+    label {
+      display: block;
+      margin-bottom: 5px;
     }
-    #output-1 {
-      margin-top: 10px;
-      width: 540px;
-      height: 400px;
-      font-size: 20px;
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .result {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
       white-space: pre-wrap;
-    }
-    #select-1 {
-      width: 540px;
-      font-size: 24px;
+      min-height: 150px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div id="output-form">
-      <label for="select-1">Select subtraction number:</label>
-      <select id="select-1">
+    <h2>Fixed Equation Output</h2>
+    <label for="select-number">Select subtraction number:</label>
+      <select id="select-number">
       <option>-select number-</option>
       <option value="679">679</option>
       <option value="678">678</option>
@@ -104,44 +105,47 @@
       <option value="33">33</option>
       <option value="18">18</option>
       <option value="16">16</option>
-        <!-- add more options if needed -->
-      </select>
-      <textarea id="output-1" readonly></textarea>
-    </div>
+      <!-- add more options here -->
+    </select>
+    <div class="result" id="result"></div>
   </div>
 
   <script>
-    const select1 = document.getElementById("select-1");
-    const output1 = document.getElementById("output-1");
+    const selectNumber = document.getElementById('select-number');
+    const resultDiv = document.getElementById('result');
+
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     function generateEquations(num) {
       const equations = [
-        `${num * 100 - num} = (${num} x 100) - ${num}`,
-        `${700 - num} = 700 - ${num}`,
-        `${4200 - num} = 4,200 - ${num}`,
-        `${10000 - num} = 10,000 - ${num}`,
-        `${39 * 75 * 100 - num} = ((39 x 75) x 100) - ${num}`,
-        `${(56 + 79) * 100 - num} = ((56 + 79) x 100) - ${num}`,
-        `${1000000 - num} = 1,000,000 - ${num}`,
-        `${(39 + 75) * 100 - num} = ((39 + 75) x 100) - ${num}`,
-        `${100000000 - num} = 100,000,000 - ${num}`
+        `${numberWithCommas(num * 100 - num)} = (${num} x 100) - ${num}`,
+        `${numberWithCommas(700 - num)} = 700 - ${num}`,
+        `${numberWithCommas(4200 - num)} = 4,200 - ${num}`,
+        `${numberWithCommas(10000 - num)} = 10,000 - ${num}`,
+        `${numberWithCommas(39 * 75 * 100 - num)} = ((39 x 75) x 100) - ${num}`,
+        `${numberWithCommas((56 + 79) * 100 - num)} = ((56 + 79) x 100) - ${num}`,
+        `${numberWithCommas(1000000 - num)} = 1,000,000 - ${num}`,
+        `${numberWithCommas((39 + 75) * 100 - num)} = ((39 + 75) x 100) - ${num}`,
+        `${numberWithCommas(100000000 - num)} = 100,000,000 - ${num}`
       ];
       return equations.join("\n");
     }
 
     function updateOutput() {
-  const selectedValue = select1.value;
-  if (selectedValue === "-select number-") {
-    output1.value = ""; // clear output
-    return;
-  }
-  const selectedNum = parseInt(selectedValue);
-  output1.value = generateEquations(selectedNum);
-}
+      const selectedValue = selectNumber.value;
+      if (selectedValue === "-select number-") {
+        resultDiv.innerText = "";
+        return;
+      }
+      const num = parseInt(selectedValue);
+      resultDiv.innerText = generateEquations(num);
+    }
 
-    select1.addEventListener("change", updateOutput);
+    selectNumber.addEventListener('change', updateOutput);
 
-    // initialize output
+    // initialize empty output
     updateOutput();
   </script>
 </body>
