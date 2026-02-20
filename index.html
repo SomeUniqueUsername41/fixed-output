@@ -131,7 +131,8 @@
         `${numberWithCommas(1000000 - num)} = 1,000,000 - ${num}`,
         `${numberWithCommas((39 + 75) * 100 - num)} = ((39 + 75) x 100) - ${num}`,
         `${numberWithCommas(100000000 - num)} = 100,000,000 - ${num}`,
-        `${numberWithCommas(39 * 73 * 100 - num)} = ((39 x 73) x 100) - ${num}`
+        `${numberWithCommas(39 * 73 * 100 - num)} = ((39 x 73) x 100) - ${num}`,
+        `${numberWithCommas(num * 100)} = (${num} x 100)`
       ];
       return equations.join("\n");
     }
