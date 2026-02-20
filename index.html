@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fixed Equation Output</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    #output-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
+    #output-1 {
+      margin-top: 10px;
+      width: 540px;
+      height: 400px;
+      font-size: 20px;
+      white-space: pre-wrap;
+    }
+    #select-1 {
+      width: 540px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="output-form">
+      <label for="select-1">Select subtraction number:</label>
+      <select id="select-1">
+      <option>-select number-</option>
+      <option value="679">679</option>
+      <option value="678">678</option>
+      <option value="576">576</option>
+      <option value="573">573</option>
+      <option value="534">534</option>
+      <option value="456">456</option>
+      <option value="413">413</option>
+      <option value="396">396</option>
+      <option value="378">378</option>
+      <option value="373">373</option>
+      <option value="339">339</option>
+      <option value="333">333</option>
+      <option value="313">313</option>
+      <option value="279">279</option>
+      <option value="276">276</option>
+      <option value="273">273</option>
+      <option value="256">256</option>
+      <option value="253">253</option>
+      <option value="234">234</option>
+      <option value="233">233</option>
+      <option value="218">218</option>
+      <option value="200">200</option>
+      <option value="198">198</option>
+      <option value="196">196</option>
+      <option value="180">180</option>
+      <option value="176">176</option>
+      <option value="174">174</option>
+      <option value="173">173</option>
+      <option value="159">159</option>
+      <option value="158">158</option>
+      <option value="154">154</option>
+      <option value="140">140</option>
+      <option value="139">139</option>
+      <option value="138">138</option>
+      <option value="136">136</option>
+      <option value="135">135</option>
+      <option value="119">119</option>
+      <option value="118">118</option>
+      <option value="114">114</option>
+      <option value="113">113</option>
+      <option value="99">99</option>
+      <option value="98">98</option>
+      <option value="96">96</option>
+      <option value="80">80</option>
+      <option value="79">79</option>
+      <option value="78">78</option>
+      <option value="76">76</option>
+      <option value="75">75</option>
+      <option value="74">74</option>
+      <option value="60">60</option>
+      <option value="59">59</option>
+      <option value="58">58</option>
+      <option value="56">56</option>
+      <option value="55">55</option>
+      <option value="54">54</option>
+      <option value="53">53</option>
+      <option value="40">40</option>
+      <option value="39">39</option>
+      <option value="38">38</option>
+      <option value="36">36</option>
+      <option value="33">33</option>
+      <option value="18">18</option>
+      <option value="16">16</option>
+        <!-- add more options if needed -->
+      </select>
+      <textarea id="output-1" readonly></textarea>
+    </div>
+  </div>
+
+  <script>
+    const select1 = document.getElementById("select-1");
+    const output1 = document.getElementById("output-1");
+
+    function generateEquations(num) {
+      const equations = [
+        `${num * 100 - num} = (${num} x 100) - ${num}`,
+        `${700 - num} = 700 - ${num}`,
+        `${4200 - num} = 4,200 - ${num}`,
+        `${10000 - num} = 10,000 - ${num}`,
+        `${39 * 75 * 100 - num} = ((39 x 75) x 100) - ${num}`,
+        `${(56 + 79) * 100 - num} = ((56 + 79) x 100) - ${num}`,
+        `${1000000 - num} = 1,000,000 - ${num}`,
+        `${(39 + 75) * 100 - num} = ((39 + 75) x 100) - ${num}`,
+        `${100000000 - num} = 100,000,000 - ${num}`
+      ];
+      return equations.join("\n");
+    }
+
+    function updateOutput() {
+  const selectedValue = select1.value;
+  if (selectedValue === "-select number-") {
+    output1.value = ""; // clear output
+    return;
+  }
+  const selectedNum = parseInt(selectedValue);
+  output1.value = generateEquations(selectedNum);
+}
+
+    select1.addEventListener("change", updateOutput);
+
+    // initialize output
+    updateOutput();
+  </script>
+</body>
+</html>
