@@ -141,14 +141,16 @@
     }
 
     function updateOutput() {
-      const selectedValue = selectNumber.value;
-      if (selectedValue === "-select number-") {
-        resultDiv.innerText = "";
-        return;
-      }
-      const num = parseInt(selectedValue);
-      resultDiv.innerText = generateEquations(num);
-    }
+  const selectedValue = selectNumber.value;
+  const num = parseInt(selectedValue, 10);
+
+  if (!selectedValue || isNaN(num)) {
+    resultDiv.textContent = "";
+    return;
+  }
+
+  resultDiv.textContent = generateEquations(num);
+}
 
     selectNumber.addEventListener('change', updateOutput);
 
